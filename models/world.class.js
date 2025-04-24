@@ -9,15 +9,31 @@ class World {
         new Cloud(),
     ]
     backgroundObjects = [
+        new BackgroundObject('../assets/5_background/layers/air.png', -719),
+        new BackgroundObject('../assets/5_background/layers/3_third_layer/2.png', -719),
+        new BackgroundObject('../assets/5_background/layers/2_second_layer/2.png', -719),
+        new BackgroundObject('../assets/5_background/layers/1_first_layer/2.png', -719),
         new BackgroundObject('../assets/5_background/layers/air.png', 0),
         new BackgroundObject('../assets/5_background/layers/3_third_layer/1.png', 0),
         new BackgroundObject('../assets/5_background/layers/2_second_layer/1.png', 0),
         new BackgroundObject('../assets/5_background/layers/1_first_layer/1.png', 0),
+        new BackgroundObject('../assets/5_background/layers/air.png', 719),
+        new BackgroundObject('../assets/5_background/layers/3_third_layer/2.png', 719),
+        new BackgroundObject('../assets/5_background/layers/2_second_layer/2.png', 719),
+        new BackgroundObject('../assets/5_background/layers/1_first_layer/2.png', 719),
+        new BackgroundObject('../assets/5_background/layers/air.png', 719*2),
+        new BackgroundObject('../assets/5_background/layers/3_third_layer/1.png', 719*2),
+        new BackgroundObject('../assets/5_background/layers/2_second_layer/1.png', 719*2),
+        new BackgroundObject('../assets/5_background/layers/1_first_layer/1.png', 719*2),
+        new BackgroundObject('../assets/5_background/layers/air.png', 719*3),
+        new BackgroundObject('../assets/5_background/layers/3_third_layer/2.png', 719*3),
+        new BackgroundObject('../assets/5_background/layers/2_second_layer/2.png', 719*3),
+        new BackgroundObject('../assets/5_background/layers/1_first_layer/2.png', 719*3),
     ]
     canvas;
     ctx;
     keyboard;
-    
+    camera_x = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -31,11 +47,15 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
+        this.ctx.translate(this.camera_x, 0)
+
         this.addObjectsToMap(this.backgroundObjects)
         this.addObjectsToMap(this.clouds)
         this.addObjectsToMap(this.enemies)
 
         this.addToMap(this.character)
+
+        this.ctx.translate(-this.camera_x, 0)
 
         let self = this;
         requestAnimationFrame(function() {
