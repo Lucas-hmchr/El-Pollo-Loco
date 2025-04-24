@@ -12,8 +12,9 @@ class MovableObject {
     speed = 0.15;
 
     otherDirection = false;
-    
-    loadImage(path){
+    // animationTime = 100;
+
+    loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
@@ -22,21 +23,36 @@ class MovableObject {
         arr.forEach(path => {
             let img = new Image();
             img.src = path;
-            this.imageCache[path] = img; 
+            this.imageCache[path] = img;
         });
 
     }
 
     moveRight() {
-        console.log('Moving Right')
+        this.x += this.speed;
+        this.otherDirection = false;
     }
 
-    
-    moveLeft(){
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60)
+
+    moveLeft(otherDirection) {
+        this.x -= this.speed;
+        this.otherDirection = otherDirection;
     }
 
+    playAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++
+    }
+
+    // setAnimationTime(newTime) {
+    //     if (newTime) {
+    //         this.animationTime = newTime;
+    //         console.log(this.animationTime)
+    //     } else {
+    //         this.animationTime = 100;
+    //     }
+    // }
 
 }
