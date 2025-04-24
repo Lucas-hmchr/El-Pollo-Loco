@@ -1,6 +1,6 @@
 class Character extends MovableObject{
 
-    y = 85;
+    y = 85;//85
     x = 50;
     height = 350;
     width = 180;
@@ -42,6 +42,18 @@ class Character extends MovableObject{
         '../assets/2_character_pepe/2_walk/W-26.png',
     ];
 
+    IMAGES_JUMPING = [
+        '../assets/2_character_pepe/3_jump/J-31.png',
+        '../assets/2_character_pepe/3_jump/J-32.png',
+        '../assets/2_character_pepe/3_jump/J-33.png',
+        '../assets/2_character_pepe/3_jump/J-34.png',
+        '../assets/2_character_pepe/3_jump/J-35.png',
+        '../assets/2_character_pepe/3_jump/J-36.png',
+        '../assets/2_character_pepe/3_jump/J-37.png',
+        '../assets/2_character_pepe/3_jump/J-38.png',
+        '../assets/2_character_pepe/3_jump/J-39.png',
+    ];
+
     world;
 
     constructor() {
@@ -49,6 +61,8 @@ class Character extends MovableObject{
         this.loadImages(this.IMAGES_STANDING);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_SLEEPING);
+        this.loadImages(this.IMAGES_JUMPING);
+        this.applyGravity()
 
         this.animate()
     }
@@ -67,6 +81,7 @@ class Character extends MovableObject{
 
     handleMovement() {
         this.handleMoveSideways();
+        this.handleJump();
     }
 
     handleMoveSideways() {
@@ -81,12 +96,17 @@ class Character extends MovableObject{
         this.world.camera_x = -this.x + 100;
     }
 
+    handleJump() {
+        if(this.world.keyboard.SPACE && !this.isAboveGround()) this.jump()
+    }
+
     //******************************//
 
     handleAnimation() {
         this.handleStandingAnimation();
         this.handleSleepingAnimation();
-        this.handleWalkAnimation()
+        this.handleWalkAnimation();
+        this.handleJumpAnimation()
     }
 
     handleWalkAnimation() {
@@ -106,6 +126,12 @@ class Character extends MovableObject{
     handleSleepingAnimation() {
         const now = new Date().getTime();
         if((now - this.movementStop) >= 3000) this.playAnimation(this.IMAGES_SLEEPING);
+    }
+
+    handleJumpAnimation() {
+        if(this.isAboveGround()){
+            this.playAnimation(this.IMAGES_JUMPING)
+        }
     }
 
     setMovementStop() {
