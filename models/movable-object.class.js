@@ -21,6 +21,8 @@ class MovableObject {
         left: 0,
         right: 0,
     }
+
+    life = 100;
     // animationTime = 100;
 
     loadImage(path) {
@@ -43,8 +45,8 @@ class MovableObject {
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = '1';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
@@ -92,5 +94,14 @@ class MovableObject {
         this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
+
+
+    characterLife() {
+        return this.life;
+    }
+
+
+
+
 
 }

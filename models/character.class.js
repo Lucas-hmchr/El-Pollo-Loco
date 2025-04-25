@@ -67,6 +67,16 @@ class Character extends MovableObject {
         '../assets/2_character_pepe/4_hurt/H-43.png',
     ];
 
+    IMAGES_DEAD = [
+        '../assets/2_character_pepe/5_dead/D-51.png',
+        '../assets/2_character_pepe/5_dead/D-52.png',
+        '../assets/2_character_pepe/5_dead/D-53.png',
+        '../assets/2_character_pepe/5_dead/D-54.png',
+        '../assets/2_character_pepe/5_dead/D-55.png',
+        '../assets/2_character_pepe/5_dead/D-56.png',
+        '../assets/2_character_pepe/5_dead/D-57.png',
+    ];
+
     world;
 
     constructor() {
@@ -76,6 +86,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURTING);
+        this.loadImages(this.IMAGES_DEAD);
         this.applyGravity()
 
         this.animate()
@@ -121,6 +132,8 @@ class Character extends MovableObject {
         this.handleSleepingAnimation();
         this.handleWalkAnimation();
         this.handleJumpAnimation()
+        // this.handleHurtAnimation();
+        // this.handleDeathAnimation();
     }
 
     handleWalkAnimation() {
@@ -149,9 +162,11 @@ class Character extends MovableObject {
     }
 
     handleHurtAnimation() {
-        this.setMovementStop();
-        const now = new Date().getTime();
-        if((now - this.movementStop) <= 1000) this.playAnimation(this.IMAGES_HURTING)
+            this.playAnimation(this.IMAGES_HURTING)
+    }
+
+    handleDeathAnimation() {
+            this.playAnimation(this.IMAGES_DEAD);
     }
 
     setMovementStop() {
@@ -163,7 +178,20 @@ class Character extends MovableObject {
     }
 
     hurtCharacter() {
+        this.applyDamage();
         this.handleHurtAnimation();
+        if(this.characterLife() === 0) this.killCharacter()
     }
+
+    applyDamage() {
+        this.life -= 5;
+    }
+
+
+    killCharacter() {
+        this.handleDeathAnimation();
+        console.log('tot')
+    }
+
 
 }
