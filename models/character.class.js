@@ -1,4 +1,4 @@
-class Character extends MovableObject{
+class Character extends MovableObject {
 
     y = 85;//85
     x = 50;
@@ -6,6 +6,13 @@ class Character extends MovableObject{
     width = 180;
     speed = 10;
     movementStop;
+
+    offset = {
+        top: 120,
+        bottom: 30,
+        left: 40,
+        right: 30,
+    }
 
     IMAGES_STANDING = [
         '../assets/2_character_pepe/1_idle/idle/I-1.png',
@@ -54,6 +61,12 @@ class Character extends MovableObject{
         '../assets/2_character_pepe/3_jump/J-39.png',
     ];
 
+    IMAGES_HURTING = [
+        '../assets/2_character_pepe/4_hurt/H-41.png',
+        '../assets/2_character_pepe/4_hurt/H-42.png',
+        '../assets/2_character_pepe/4_hurt/H-43.png',
+    ];
+
     world;
 
     constructor() {
@@ -62,6 +75,7 @@ class Character extends MovableObject{
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_HURTING);
         this.applyGravity()
 
         this.animate()
@@ -85,11 +99,11 @@ class Character extends MovableObject{
     }
 
     handleMoveSideways() {
-        if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x){
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.resetMovementStop()
             this.moveRight();
         }
-        if(this.world.keyboard.LEFT && this.x > 0){
+        if (this.world.keyboard.LEFT && this.x > 0) {
             this.resetMovementStop()
             this.moveLeft(true);
         }
@@ -97,7 +111,7 @@ class Character extends MovableObject{
     }
 
     handleJump() {
-        if(this.world.keyboard.SPACE && !this.isAboveGround()) this.jump()
+        if (this.world.keyboard.SPACE && !this.isAboveGround()) this.jump()
     }
 
     //******************************//
@@ -125,20 +139,31 @@ class Character extends MovableObject{
 
     handleSleepingAnimation() {
         const now = new Date().getTime();
-        if((now - this.movementStop) >= 3000) this.playAnimation(this.IMAGES_SLEEPING);
+        if ((now - this.movementStop) >= 3000) this.playAnimation(this.IMAGES_SLEEPING);
     }
 
     handleJumpAnimation() {
-        if(this.isAboveGround()){
+        if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING)
         }
     }
 
-    setMovementStop() {
-        if(!this.movementStop) this.movementStop = new Date().getTime();
+    handleHurtAnimation() {
+        this.setMovementStop();
+        const now = new Date().getTime();
+        if((now - this.movementStop) <= 1000) this.playAnimation(this.IMAGES_HURTING)
     }
 
-    resetMovementStop(){
+    setMovementStop() {
+        if (!this.movementStop) this.movementStop = new Date().getTime();
+    }
+
+    resetMovementStop() {
         this.movementStop = null;
     }
+
+    hurtCharacter() {
+        this.handleHurtAnimation();
+    }
+
 }

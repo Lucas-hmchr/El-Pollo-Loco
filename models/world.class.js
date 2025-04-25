@@ -74,6 +74,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)){
                     console.log('collision with enemy', enemy)
+                    this.character.hurtCharacter()
                 }
             });
         }, 200)
