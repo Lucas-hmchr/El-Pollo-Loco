@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends DrawableObject{
     x = 100;
     y = 300;
     img;
@@ -23,34 +23,9 @@ class MovableObject {
     }
 
     life = 100;
+    lastHit;
     // animationTime = 100;
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-    }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '1';
-            ctx.strokeStyle = 'transparent';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
 
     moveRight() {
         this.x += this.speed;
@@ -100,8 +75,24 @@ class MovableObject {
         return this.life;
     }
 
+    isDead() {
+        return this.life == 0;
+    }
 
-
+    applyDamage() {
+        this.life -= 5;
+        if(this.life < 0) {
+            this.life = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+    
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 2;
+    }
 
 
 }

@@ -132,8 +132,8 @@ class Character extends MovableObject {
         this.handleSleepingAnimation();
         this.handleWalkAnimation();
         this.handleJumpAnimation()
-        // this.handleHurtAnimation();
-        // this.handleDeathAnimation();
+        this.handleHurtAnimation();
+        this.handleDeathAnimation();
     }
 
     handleWalkAnimation() {
@@ -162,11 +162,15 @@ class Character extends MovableObject {
     }
 
     handleHurtAnimation() {
-            this.playAnimation(this.IMAGES_HURTING)
+        if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURTING);            
+        }
     }
 
     handleDeathAnimation() {
+        if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
+        }      
     }
 
     setMovementStop() {
@@ -179,19 +183,12 @@ class Character extends MovableObject {
 
     hurtCharacter() {
         this.applyDamage();
-        this.handleHurtAnimation();
-        if(this.characterLife() === 0) this.killCharacter()
     }
 
-    applyDamage() {
-        this.life -= 5;
-    }
-
-
-    killCharacter() {
-        this.handleDeathAnimation();
-        console.log('tot')
-    }
+    // killCharacter() {
+    //     this.handleDeathAnimation();
+    //     console.log('tot')
+    // }
 
 
 }
