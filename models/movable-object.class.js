@@ -1,4 +1,4 @@
-class MovableObject extends DrawableObject{
+class MovableObject extends DrawableObject {
     x = 100;
     y = 300;
     img;
@@ -56,18 +56,22 @@ class MovableObject extends DrawableObject{
     }
 
     isAboveGround() {
-        return this.y < 85;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 85;
+        }
     }
 
     jump() {
         this.speedY = 30;
     }
 
-    isColliding(mo){
+    isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
 
@@ -81,13 +85,13 @@ class MovableObject extends DrawableObject{
 
     applyDamage() {
         this.life -= 5;
-        if(this.life < 0) {
+        if (this.life < 0) {
             this.life = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
     }
-    
+
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
