@@ -5,7 +5,6 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new StatusBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -24,13 +23,14 @@ class World {
         this.ctx.translate(this.camera_x, 0)
 
         this.addObjectsToMap(this.level.backgroundObjects)
+        this.addObjectsToMap(this.level.clouds)
 
         // pace for fixed Obj
         this.ctx.translate(-this.camera_x, 0)
-        this.addToMap(this.statusBar)
+        this.addObjectsToMap(this.level.statusBars)
         this.ctx.translate(this.camera_x, 0)
 
-        this.addObjectsToMap(this.level.clouds)
+
         this.addObjectsToMap(this.level.enemies)
         this.addObjectsToMap(this.throwableObjects)
         this.addToMap(this.character)
@@ -97,7 +97,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 console.log('collision with enemy', enemy)
                 this.character.hurtCharacter();
-                this.statusBar.setPercentage(this.character.life);
+                this.level.statusBars[0].setPercentage(this.character.life);
             }
         });
     }
