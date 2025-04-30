@@ -89,16 +89,35 @@ class World {
         if(this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle)
+            this.level.statusBars[2].setPercentage(this.level.statusBars[2].percentage -= 10);
         }
     }
 
     checkCollisions() {
+        this.checkCharacterCollision();
+        this.checkBottleCollision();
+    }
+
+    checkCharacterCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                console.log('collision with enemy', enemy)
                 this.character.hurtCharacter();
                 this.level.statusBars[0].setPercentage(this.character.life);
             }
+        });
+    }
+
+    checkBottleCollision() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.bottleHitsEnemy(enemy)) {
+                enemy.kill();
+            }
+        });
+    }
+ 
+    bottleHitsEnemy(enemy) {
+        return this.throwableObjects.some((bottle) => {
+            return bottle.isColliding(enemy);
         });
     }
 }

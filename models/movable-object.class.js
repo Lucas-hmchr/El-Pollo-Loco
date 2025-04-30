@@ -24,6 +24,7 @@ class MovableObject extends DrawableObject {
 
     life = 100;
     lastHit;
+    deathDate;
     // animationTime = 100;
 
 
@@ -80,6 +81,7 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
+        
         return this.life == 0;
     }
 
@@ -90,6 +92,11 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    kill() {
+        this.life = 0;
+        this.deathDate = new Date().getTime();
     }
 
     isHurt() {
