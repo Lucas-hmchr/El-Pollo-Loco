@@ -34,10 +34,12 @@ class StatusBar extends DrawableObject {
         super();
         this.statusType = statusType;
         this.initStatusBar();
+        this.x = 20;
+        this.width = 200;
+        this.height = 60;
     }
 
     initStatusBar() {
-        console.log(this.statusType)
         if (this.statusType === 'health') {
             this.loadHealthBar();
             this.setPercentage(100);
@@ -46,38 +48,28 @@ class StatusBar extends DrawableObject {
             this.setPercentage(0);
         } else if (this.statusType === 'bottles') {
             this.loadBottleBar();
-            this.setPercentage(0);
+            this.setPercentage(20);
         }
     }
 
     loadHealthBar() {
         this.loadImages(this.IMAGES.health);
-        this.x = 20;
         this.y = 0;
-        this.width = 200;
-        this.height = 60;
     }
 
     loadCoinBar() {
         this.loadImages(this.IMAGES.coins);
-        this.x = 20;
-        this.y = 60;
-        this.width = 200;
-        this.height = 60;
+        this.y = 45;
     }
 
     loadBottleBar() {
         this.loadImages(this.IMAGES.bottles);
-        this.x = 20;
-        this.y = 120;
-        this.width = 200;
-        this.height = 60;
+        this.y = 90;
     }
 
     setPercentage(percentage) {
-        this.percentage = percentage;
+        percentage > 0 ? this.percentage = percentage : this.percentage = 0;
         const imagesForType = this.IMAGES[this.statusType] || [];
-        console.log(imagesForType)
         let path = imagesForType[this.resolveImageIndex(this.percentage)];
         this.img = this.imageCache[path];
     }
