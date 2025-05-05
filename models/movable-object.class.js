@@ -69,10 +69,14 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
+        if(!mo.isDead()) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+        } else {
+            return false;
+        }
     }
 
 
@@ -81,7 +85,6 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
-        
         return this.life == 0;
     }
 
@@ -105,5 +108,13 @@ class MovableObject extends DrawableObject {
         return timepassed < 2;
     }
 
+    removeBody() {
+        console.log(this.deathDate, new Date().getTime());
+        if (this.deathDate && this.deathDate + 1000 < new Date().getTime()) {
+            this.width = 0; 
+            this.height = 0;
+            this.y = 700;
+        }
+    }
 
 }

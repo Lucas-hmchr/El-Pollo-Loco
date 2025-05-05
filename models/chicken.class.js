@@ -45,11 +45,5 @@ class Chicken extends MovableObject{
         if(this.isDead()) this.removeBody();
     }
 
-    removeBody() {
-        console.log(this.deathDate, new Date().getTime());
-        if (this.deathDate && this.deathDate + 1000 < new Date().getTime()) {
-            this.width = 0; 
-            this.height = 0;
-        }
-    }
+
 }
