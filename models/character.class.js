@@ -15,6 +15,7 @@ class Character extends MovableObject {
     }
 
     availableBottles = 0;
+    collectedCoins = 0;
 
     IMAGES_STANDING = [
         '../assets/2_character_pepe/1_idle/idle/I-1.png',

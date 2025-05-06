@@ -100,7 +100,7 @@ class World {
         this.checkCharacterCollision();
         this.checkBottleCollision();
         this.checkCharacterCollection(this.level.bottles);
-        // this.checkCharacterCollection(this.level.coins);
+        this.checkCharacterCollection(this.level.coins);
         this.checkCharacterJumpingCollision();
     }
 
@@ -143,7 +143,7 @@ class World {
         objects.forEach((object) => {           
             if (this.character.isTouchingCollectable(object)) {
                 if(object instanceof Bottle) this.collectBottle(object);
-                // if(object instanceof Coin) console.log('münze gesammelt')
+                if(object instanceof Coin) this.collectCoin(object);
             }
         });
     }
@@ -151,7 +151,13 @@ class World {
     collectBottle(object) {
         this.level.statusBars[2].setPercentage(this.level.statusBars[2].percentage += 10);
         this.character.availableBottles += 1;
-        this.removeObject(object, this.level.bottles)
+        this.removeObject(object, this.level.bottles);
+    }
+
+    collectCoin(object) {
+        this.level.statusBars[1].setPercentage(this.level.statusBars[1].percentage += 20);
+        this.character.collectedCoins += 1;
+        this.removeObject(object, this.level.coins);
     }
 
     removeObject(object, list) {
