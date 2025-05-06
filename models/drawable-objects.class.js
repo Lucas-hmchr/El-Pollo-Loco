@@ -36,4 +36,10 @@ class DrawableObject {
             ctx.stroke();
         }
     }
+
+    removeObj(mo ,timeout) {
+        setTimeout(() => {
+
+        }, timeout)
+    }
 }

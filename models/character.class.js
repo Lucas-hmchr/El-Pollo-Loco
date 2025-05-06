@@ -144,7 +144,6 @@ class Character extends MovableObject {
 
     handleStandingAnimation() {
         if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-            // this.setAnimationTime(800)
             this.setMovementStop()
             this.playAnimation(this.IMAGES_STANDING);
         }
@@ -184,11 +183,4 @@ class Character extends MovableObject {
     hurtCharacter() {
         this.applyDamage();
     }
-
-    // killCharacter() {
-    //     this.handleDeathAnimation();
-    //     console.log('tot')
-    // }
-
-
 }

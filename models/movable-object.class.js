@@ -25,6 +25,7 @@ class MovableObject extends DrawableObject {
     life = 100;
     lastHit;
     deathDate;
+    gravityIntervalId;
     // animationTime = 100;
 
 
@@ -44,17 +45,37 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++
+    };
+
+    playAnimationOnce(images, totalDuration) {
+        this.currentImage = 0;
+        const timePerFrame = totalDuration / images.length;
+        const animationInterval = setInterval(() => {
+            if (this.currentImage < images.length) {
+                let path = images[this.currentImage];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            } else {
+                clearInterval(animationInterval);
+            }
+        }, timePerFrame);
     }
 
     applyGravity() {
-        setInterval(() => {
+        this.gravityIntervalId = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
+        }, 1000 / 25);
+    };
 
-        }, 1000 / 25)
-    }
+    removeGravity() {
+        if (this.gravityIntervalId !== null) {
+            clearInterval(this.gravityIntervalId);
+            this.gravityIntervalId = null;
+        }
+    };
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
@@ -69,11 +90,11 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        if(!mo.isDead()) {
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+        if (!mo.isDead()) {
+            return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
         } else {
             return false;
         }
@@ -109,12 +130,17 @@ class MovableObject extends DrawableObject {
     }
 
     removeBody() {
-        console.log(this.deathDate, new Date().getTime());
         if (this.deathDate && this.deathDate + 1000 < new Date().getTime()) {
-            this.width = 0; 
+            this.width = 0;
             this.height = 0;
             this.y = 700;
         }
+    }
+
+    moveObjBelowCanvas(timeout) {
+        setTimeout(() => {
+            this.y = 1000;
+        }, timeout)
     }
 
 }

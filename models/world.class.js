@@ -117,7 +117,14 @@ class World {
  
     bottleHitsEnemy(enemy) {
         return this.throwableObjects.some((bottle) => {
+            if(bottle.isColliding(enemy)) {
+                bottle.stopThrow();
+            }
             return bottle.isColliding(enemy);
         });
     }
+
+    // removeObject(mo) {
+
+    // }
 }
