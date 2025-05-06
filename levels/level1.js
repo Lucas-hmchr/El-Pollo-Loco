@@ -44,8 +44,6 @@ const level1 = new Level(
         new BackgroundObject('../assets/5_background/layers/1_first_layer/2.png', 719*3),
     ],
     [
-        new Bottle('../assets/6_salsa_bottle/1_salsa_bottle_on_ground.png', 0, 100),
-        new Bottle('../assets/6_salsa_bottle/2_salsa_bottle_on_ground.png', 50, 200),
         new Bottle('../assets/6_salsa_bottle/1_salsa_bottle_on_ground.png', 300, 500),
         new Bottle('../assets/6_salsa_bottle/1_salsa_bottle_on_ground.png', 600, 900),
         new Bottle('../assets/6_salsa_bottle/2_salsa_bottle_on_ground.png', 800, 1200),

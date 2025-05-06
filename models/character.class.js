@@ -14,6 +14,8 @@ class Character extends MovableObject {
         right: 30,
     }
 
+    availableBottles = 0;
+
     IMAGES_STANDING = [
         '../assets/2_character_pepe/1_idle/idle/I-1.png',
         '../assets/2_character_pepe/1_idle/idle/I-2.png',
@@ -183,4 +185,5 @@ class Character extends MovableObject {
     hurtCharacter() {
         this.applyDamage();
     }
+
 }

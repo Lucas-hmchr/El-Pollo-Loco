@@ -22,6 +22,8 @@ class ThrowableObject extends MovableObject {
     throwIntervalId;
     isFlying;
 
+    availableBottles = 0;
+
     constructor(x, y) {
         super().loadImage('../assets/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES_THROWING)
@@ -34,13 +36,14 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
-        this.speedY = 30;
-        this.applyGravity()
-        this.throwIntervalId = setInterval(() => {
-            this.x += 10;
-        }, 25);
-        this.throwAnimation()
-        this.isFlying = true;
+            this.availableBottles -= 1;
+            this.speedY = 30;
+            this.applyGravity()
+            this.throwIntervalId = setInterval(() => {
+                this.x += 10;
+            }, 25);
+            this.throwAnimation()
+            this.isFlying = true;
     }
 
     throwAnimation() {

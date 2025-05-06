@@ -87,10 +87,11 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.D) {
+        if(this.keyboard.D && this.character.availableBottles >= 1) {
+            this.character.availableBottles -= 1;
+            this.level.statusBars[2].setPercentage(this.level.statusBars[2].percentage -= 10);
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle)
-            this.level.statusBars[2].setPercentage(this.level.statusBars[2].percentage -= 10);
         }
     }
 
@@ -129,14 +130,19 @@ class World {
     checkCharacterCollection(objects) {
         objects.forEach((object) => {           
             if (this.character.isCollecting(object)) {
-                if(object instanceof Bottle) console.log('flasche gesammelt')
-                if(object instanceof Coin) console.log('münze gesammelt')
-
+                if(object instanceof Bottle) this.collectBottle(object);
+                // if(object instanceof Coin) console.log('münze gesammelt')
             }
         });
     }
 
-    // removeObject(mo) {
+    collectBottle(object) {
+        this.level.statusBars[2].setPercentage(this.level.statusBars[2].percentage += 10);
+        this.character.availableBottles += 1;
+        this.removeObject(object, this.level.bottles)
+    }
 
-    // }
+    removeObject(object, list) {
+        list.splice(list.findIndex((element) => element.id == object.id), 1);
+    }
 }

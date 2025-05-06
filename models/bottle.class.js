@@ -4,12 +4,13 @@ class Bottle extends DrawableObject{
     x = Math.random()*500;
     width = 75;
     height = 75;
+    id = Date.now()
 
     offset = {
         top: 10,
         bottom: 10,
         left: 10,
-        right: 130,
+        right: 10,
     }
 
     constructor(imagePath, minx, maxx) {
