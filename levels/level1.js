@@ -59,5 +59,15 @@ const level1 = new Level(
         new StatusBar('health'),
         new StatusBar('coins'),
         new StatusBar('bottles'),
+    ],
+    [
+        new Coin('../assets/8_coin/coin_1.png', 300, 500),
+        new Coin('../assets/8_coin/coin_1.png', 600, 900),
+        new Coin('../assets/8_coin/coin_2.png', 800, 1200),
+        new Coin('../assets/8_coin/coin_2.png', 1200, 1500),
+        new Coin('../assets/8_coin/coin_1.png', 1600, 1900),
+        new Coin('../assets/8_coin/coin_2.png', 1700, 1900),
+        new Coin('../assets/8_coin/coin_1.png', 2000, 2200),
+        new Coin('../assets/8_coin/coin_2.png', 2100, 2300),
     ]
 );

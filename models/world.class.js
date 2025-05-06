@@ -34,6 +34,7 @@ class World {
         this.addObjectsToMap(this.level.enemies)
         this.addObjectsToMap(this.throwableObjects)
         this.addObjectsToMap(this.level.bottles)
+        this.addObjectsToMap(this.level.coins)
         this.addToMap(this.character)
 
 
@@ -129,7 +130,7 @@ class World {
 
     checkCharacterCollection(objects) {
         objects.forEach((object) => {           
-            if (this.character.isCollecting(object)) {
+            if (this.character.isTouchingCollectable(object)) {
                 if(object instanceof Bottle) this.collectBottle(object);
                 // if(object instanceof Coin) console.log('münze gesammelt')
             }
