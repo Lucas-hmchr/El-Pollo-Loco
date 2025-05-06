@@ -185,5 +185,9 @@ class Character extends MovableObject {
     hurtCharacter() {
         this.applyDamage();
     }
+    
+    inPositionToJumpKill(enemy) {
+        return this.isColliding(enemy) && this.isAboveGround() && this.speedY < 0 && !(enemy instanceof Endboss);
+    }
 
 }

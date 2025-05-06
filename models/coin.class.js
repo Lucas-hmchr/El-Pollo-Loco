@@ -14,7 +14,8 @@ class Coin extends DrawableObject{
 
     constructor(imagePath, minx, maxx) {
         super().loadImage(imagePath);
-        this.x = Math.random() * (maxx - minx + 1) + minx;        
+        this.x = Math.random() * (maxx - minx + 1) + minx;     
+        this.y = Math.random() * (200 - 100 + 1) + 100;   
     }
 
 }

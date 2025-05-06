@@ -100,13 +100,24 @@ class World {
         this.checkCharacterCollision();
         this.checkBottleCollision();
         this.checkCharacterCollection(this.level.bottles);
+        // this.checkCharacterCollection(this.level.coins);
+        this.checkCharacterJumpingCollision();
     }
 
     checkCharacterCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !(this.character.inPositionToJumpKill(enemy))) {
                 this.character.hurtCharacter();
                 this.level.statusBars[0].setPercentage(this.character.life);
+            }
+        });
+    }
+
+    
+    checkCharacterJumpingCollision() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.inPositionToJumpKill(enemy)) {
+                enemy.kill()
             }
         });
     }
@@ -146,4 +157,5 @@ class World {
     removeObject(object, list) {
         list.splice(list.findIndex((element) => element.id == object.id), 1);
     }
+
 }
