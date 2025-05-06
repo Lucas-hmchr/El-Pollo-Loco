@@ -2,7 +2,6 @@ class ThrowableObject extends MovableObject {
 
     speedY = 30;
     speedX = 20;
-    id = Date.now();
 
     IMAGES_THROWING = [
         '../assets/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -63,6 +62,5 @@ class ThrowableObject extends MovableObject {
         this.splashAnimation();
         clearInterval(this.throwIntervalId);
         this.isFlying = false;
-        return true;
     }
 }

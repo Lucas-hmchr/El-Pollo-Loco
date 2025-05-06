@@ -25,7 +25,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects)
         this.addObjectsToMap(this.level.clouds)
 
-        // pace for fixed Obj
+        // space for fixed Obj
         this.ctx.translate(-this.camera_x, 0)
         this.addObjectsToMap(this.level.statusBars)
         this.ctx.translate(this.camera_x, 0)
@@ -33,6 +33,7 @@ class World {
 
         this.addObjectsToMap(this.level.enemies)
         this.addObjectsToMap(this.throwableObjects)
+        this.addObjectsToMap(this.level.bottles)
         this.addToMap(this.character)
 
 
@@ -82,7 +83,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200)
+        }, 100)
     }
 
     checkThrowObjects() {
@@ -96,6 +97,7 @@ class World {
     checkCollisions() {
         this.checkCharacterCollision();
         this.checkBottleCollision();
+        this.checkCharacterCollection(this.level.bottles);
     }
 
     checkCharacterCollision() {
@@ -121,6 +123,16 @@ class World {
                 bottle.stopThrow();
             }
             return bottle.isColliding(enemy);
+        });
+    }
+
+    checkCharacterCollection(objects) {
+        objects.forEach((object) => {           
+            if (this.character.isCollecting(object)) {
+                if(object instanceof Bottle) console.log('flasche gesammelt')
+                if(object instanceof Coin) console.log('münze gesammelt')
+
+            }
         });
     }
 
