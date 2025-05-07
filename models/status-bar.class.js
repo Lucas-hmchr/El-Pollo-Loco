@@ -24,6 +24,14 @@ class StatusBar extends DrawableObject {
             '../assets/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
             '../assets/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
             '../assets/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png',
+        ],
+        endboss: [
+            '../assets/7_statusbars/2_statusbar_endboss/orange/orange0.png',
+            '../assets/7_statusbars/2_statusbar_endboss/orange/orange20.png',
+            '../assets/7_statusbars/2_statusbar_endboss/orange/orange40.png',
+            '../assets/7_statusbars/2_statusbar_endboss/green/green60.png',
+            '../assets/7_statusbars/2_statusbar_endboss/green/green80.png',
+            '../assets/7_statusbars/2_statusbar_endboss/green/green100.png',
         ]
     }
 
@@ -34,7 +42,6 @@ class StatusBar extends DrawableObject {
         super();
         this.statusType = statusType;
         this.initStatusBar();
-        this.x = 20;
         this.width = 200;
         this.height = 60;
     }
@@ -49,22 +56,34 @@ class StatusBar extends DrawableObject {
         } else if (this.statusType === 'bottles') {
             this.loadBottleBar();
             this.setPercentage(0);
+        } else if (this.statusType === 'endboss') {
+            this.loadEndbossBar();
+            this.setPercentage(100);
         }
     }
 
     loadHealthBar() {
         this.loadImages(this.IMAGES.health);
-        this.y = 0;
+        this.x = 20;
+        this.y = 0; 
     }
 
     loadCoinBar() {
         this.loadImages(this.IMAGES.coins);
         this.y = 45;
+        this.x = 20;
     }
 
     loadBottleBar() {
         this.loadImages(this.IMAGES.bottles);
         this.y = 90;
+        this.x = 20;
+    }
+
+    loadEndbossBar() {
+        this.loadImages(this.IMAGES.endboss);
+        this.y = 10;
+        this.x = 490;
     }
 
     setPercentage(percentage) {
@@ -81,7 +100,7 @@ class StatusBar extends DrawableObject {
             return 4;
         } else if (percentage >= 60) {
             return 3;
-        } else if (percentage >= 40) {
+        } else if (percentage >= 40) { 
             return 2;
         } else if (percentage >= 10) {
             return 1;

@@ -1,11 +1,11 @@
 const level1 = new Level(
     [
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
         new Chick(),
         new Chick(),
         new Chick(),
@@ -66,6 +66,7 @@ const level1 = new Level(
         new StatusBar('health'),
         new StatusBar('coins'),
         new StatusBar('bottles'),
+        new StatusBar('endboss'),
     ],
     [
         new Coin('../assets/8_coin/coin_1.png', 600, 900),
