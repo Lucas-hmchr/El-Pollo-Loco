@@ -28,10 +28,10 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Bottle) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Bottle || this instanceof Chick ) {
             ctx.beginPath();
             ctx.lineWidth = '1';
-            ctx.strokeStyle = 'transparent';
+            ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
