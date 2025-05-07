@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     throwableObjects = [];
+    endboss;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -67,6 +68,8 @@ class World {
     setWorld() {
         this.character.world = this;
         this.level.statusBars.world = this;
+        this.endboss = this.level.enemies[this.level.enemies.length - 1];
+        this.endboss.world = this;
     }
 
     flipImage(mo) {
@@ -85,6 +88,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkState();
         }, 100)
     }
 
@@ -110,6 +114,7 @@ class World {
             if (this.character.isColliding(enemy) && !(this.character.inPositionToJumpKill(enemy))) {
                 this.character.hurtCharacter();
                 this.level.statusBars[0].setPercentage(this.character.life);
+                if(enemy instanceof Endboss) this.endboss.isAttacking = true;
             }
         });
     }
@@ -164,6 +169,10 @@ class World {
 
     removeObject(object, list) {
         list.splice(list.findIndex((element) => element.id == object.id), 1);
+    }
+
+    checkState() {
+        if(this.character.x >= 1500) this.endboss.startWalking();
     }
 
 }

@@ -5,7 +5,6 @@ class Character extends MovableObject {
     height = 350;
     width = 180;
     speed = 10;
-    movementStop;
 
     offset = {
         top: 120,
@@ -173,14 +172,6 @@ class Character extends MovableObject {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
         }      
-    }
-
-    setMovementStop() {
-        if (!this.movementStop) this.movementStop = new Date().getTime();
-    }
-
-    resetMovementStop() {
-        this.movementStop = null;
     }
 
     hurtCharacter() {

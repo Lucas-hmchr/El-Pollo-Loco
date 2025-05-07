@@ -26,6 +26,8 @@ class MovableObject extends DrawableObject {
     lastHit;
     deathDate;
     gravityIntervalId;
+    movementStop;
+
     // animationTime = 100;
 
 
@@ -110,7 +112,6 @@ class MovableObject extends DrawableObject {
 
     applyDamage(damage) {
         this.life -= damage;
-        console.log(this.life, damage)
         if (this.life < 0) {
             this.life = 0;
         } else {
@@ -141,6 +142,14 @@ class MovableObject extends DrawableObject {
         setTimeout(() => {
             this.y = 1000;
         }, timeout)
+    }
+    
+    setMovementStop() {
+        if (!this.movementStop) this.movementStop = new Date().getTime();
+    }
+
+    resetMovementStop() {
+        this.movementStop = null;
     }
 
 }
