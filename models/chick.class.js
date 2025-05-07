@@ -8,8 +8,8 @@ class Chick extends MovableObject{
     offset = {
         top: -30,
         bottom: 0,
-        left: -20,
-        right: -20,
+        left: -10,
+        right: -10,
     }
 
     IMAGES_WALKING = [

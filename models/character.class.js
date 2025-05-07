@@ -184,7 +184,7 @@ class Character extends MovableObject {
     }
 
     hurtCharacter() {
-        this.applyDamage();
+        this.applyDamage(5);
     }
     
     inPositionToJumpKill(enemy) {

@@ -100,7 +100,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
     characterLife() {
         return this.life;
     }
@@ -109,8 +108,9 @@ class MovableObject extends DrawableObject {
         return this.life == 0;
     }
 
-    applyDamage() {
-        this.life -= 5;
+    applyDamage(damage) {
+        this.life -= damage;
+        console.log(this.life, damage)
         if (this.life < 0) {
             this.life = 0;
         } else {

@@ -66,6 +66,7 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        this.level.statusBars.world = this;
     }
 
     flipImage(mo) {
@@ -125,11 +126,12 @@ class World {
     checkBottleCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.bottleHitsEnemy(enemy)) {
-                enemy.kill();
+                if(enemy instanceof Chicken || enemy instanceof Chick) enemy.kill();
+                if(enemy instanceof Endboss && !enemy.isHurt()) enemy.applyDamage(15); this.level.statusBars[3].setPercentage(enemy.life);
             }
         });
-    }
- 
+    } 
+
     bottleHitsEnemy(enemy) {
         return this.throwableObjects.some((bottle) => {
             if(bottle.isColliding(enemy)) {

@@ -37,6 +37,7 @@ class StatusBar extends DrawableObject {
 
     percentage = 100;
     statusType;
+    world;
 
     constructor(statusType) {
         super();
@@ -83,6 +84,7 @@ class StatusBar extends DrawableObject {
     loadEndbossBar() {
         this.loadImages(this.IMAGES.endboss);
         this.y = 10;
+        // this.x = this.world.level.enemies[this.world.level.enemies.length + 1].x;
         this.x = 490;
     }
 
