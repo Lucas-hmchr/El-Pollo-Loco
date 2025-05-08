@@ -12,8 +12,8 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.draw();
         this.setWorld();
+        this.draw();
         this.run();
     }
 
@@ -67,9 +67,15 @@ class World {
 
     setWorld() {
         this.character.world = this;
-        this.level.statusBars.world = this;
+        this.setStatusBars();
         this.endboss = this.level.enemies[this.level.enemies.length - 1];
         this.endboss.world = this;
+    }
+
+    setStatusBars() {
+        this.level.statusBars.forEach((bar) => {
+            bar.world = this;
+        })
     }
 
     flipImage(mo) {
@@ -171,6 +177,28 @@ class World {
     }
 
     checkState() {
+        this.checkEndbossStart();
+        this.checkGameEnd();
+    }
+
+    checkEndbossStart() {
         if(this.character.x >= 1500 && !this.endboss.isWalking) this.endboss.startWalking();
+    }
+
+    checkGameEnd() {
+        if(this.character.isDead()) this.loseGame();
+        if(this.endboss.isDead()) this.winGame();
+    }
+
+    winGame() {
+        setTimeout(() => {
+            console.log('You win')
+        }, 2500);
+    }
+
+    loseGame() {
+        setTimeout(() => {
+            console.log('You loose')
+        }, 2500);
     }
 }

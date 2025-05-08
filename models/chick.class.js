@@ -1,4 +1,4 @@
-class Chick extends MovableObject{
+class Chick extends MovableObject {
 
     height = 50;
     width = 60;
@@ -28,24 +28,41 @@ class Chick extends MovableObject{
 
     animate() {
         if (this.isDead()) {
-            
+
         } else {
             setInterval(() => {
                 this.handleMovement();
-            }, 1000/60)
-            
+            }, 1000 / 60)
+
             setInterval(() => {
                 this.handleAnimation();
-            }, 200)  
+            }, 200)
         }
     }
 
     handleMovement() {
-        if(!this.isDead()) this.moveLeft(false);
+        if (!this.isDead()) this.walk();
+    }
+
+    walk() {
+        if (this.x < 200) {
+            this.moveRight();
+            this.otherDirection = true;
+        }
+        if (!this.otherDirection) {
+            this.moveLeft(false);
+        } else {
+            this.moveRight();
+            this.otherDirection = true;
+        }
+        if (this.x > 2000) {
+            this.otherDirection = false;
+            this.moveLeft(false);
+        }
     }
 
     handleAnimation() {
         this.isDead() ? this.loadImage('../assets/3_enemies_chicken/chicken_small/2_dead/dead.png') : this.playAnimation(this.IMAGES_WALKING);
-        if(this.isDead()) this.removeBody();
+        if (this.isDead()) this.removeBody();
     }
 }

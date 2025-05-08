@@ -112,11 +112,11 @@ class Character extends MovableObject {
     }
 
     handleMoveSideways() {
-        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
             this.resetMovementStop()
             this.moveRight();
         }
-        if (this.world.keyboard.LEFT && this.x > 0) {
+        if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
             this.resetMovementStop()
             this.moveLeft(true);
         }
@@ -124,7 +124,7 @@ class Character extends MovableObject {
     }
 
     handleJump() {
-        if (this.world.keyboard.SPACE && !this.isAboveGround()) this.jump()
+        if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.isDead()) this.jump()
     }
 
     //******************************//

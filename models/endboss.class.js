@@ -128,16 +128,13 @@ class Endboss extends MovableObject {
     }
 
     walk() {
-        console.log('moin')
         this.walkInterval = setInterval(() => {
             if (this.isDead()) return;
             if (this.distance() >= 100) {
                 this.moveRight();
                 this.otherDirection = true;
-                console.log('recht')
             } else if (this.distance() <= -100) {
                 this.moveLeft(false);
-                console.log('links')
             } 
         }, 800);
     }
