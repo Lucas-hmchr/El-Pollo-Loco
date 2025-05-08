@@ -114,7 +114,6 @@ class World {
             if (this.character.isColliding(enemy) && !(this.character.inPositionToJumpKill(enemy))) {
                 this.character.hurtCharacter();
                 this.level.statusBars[0].setPercentage(this.character.life);
-                if(enemy instanceof Endboss) this.endboss.isAttacking = true;
             }
         });
     }
@@ -132,7 +131,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.bottleHitsEnemy(enemy)) {
                 if(enemy instanceof Chicken || enemy instanceof Chick) enemy.kill();
-                if(enemy instanceof Endboss && !enemy.isHurt()) enemy.applyDamage(15); this.level.statusBars[3].setPercentage(enemy.life);
+                if(enemy instanceof Endboss && !enemy.isHurt()) enemy.applyDamage(20); this.level.statusBars[3].setPercentage(enemy.life);
             }
         });
     } 
@@ -172,7 +171,6 @@ class World {
     }
 
     checkState() {
-        if(this.character.x >= 1500) this.endboss.startWalking();
+        if(this.character.x >= 1500 && !this.endboss.isWalking) this.endboss.startWalking();
     }
-
 }

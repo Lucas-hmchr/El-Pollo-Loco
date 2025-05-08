@@ -15,6 +15,7 @@ class Endboss extends MovableObject {
 
     isAttacking;
     isWalking;
+    walkInterval;
 
     IMAGES_WALK = [
         '../assets/4_enemie_boss_chicken/1_walk/G1.png',
@@ -58,7 +59,7 @@ class Endboss extends MovableObject {
     ];
 
     constructor() {
-        super().loadImage(this.IMAGES_ALERT[0]);
+        super().loadImage(this.IMAGES_WALK[0]);
         this.loadImages(this.IMAGES_WALK)
         this.loadImages(this.IMAGES_ALERT)
         this.loadImages(this.IMAGES_ATTACK)
@@ -77,7 +78,10 @@ class Endboss extends MovableObject {
 
     handleAnimation() {
         this.handleStandingAnimation();
+        this.handleWalkAnimation();
         this.handleAttackingAnimation();
+        this.handleHurtAnimation();
+        this.handleDeathAnimation();
     }
 
     handleStandingAnimation() {
@@ -93,47 +97,48 @@ class Endboss extends MovableObject {
     }
 
     handleAttackingAnimation() {
-        if (this.isAttacking) {
+        if (this.world.character.isColliding(this)) {
             this.playAnimation(this.IMAGES_ATTACK)
         }
     }
 
+    handleHurtAnimation() {
+        if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT)
+        }
+    }
+
+    handleDeathAnimation() {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.isWalking = false;
+            clearInterval(this.walkInterval)
+        }
+    }
+
     startWalking() {
-        this.isWalking = true;
-        setInterval(() => {
-            if (this.distance() >= 100) {
-                this.moveRight();
-                this.otherDirection = true;
-            } else if (this.distance() <= -100) {
-                this.moveLeft(false);
-            }
-        }, 1000);
+        setTimeout(() => {
+            this.isWalking = true;
+            this.walk();
+        }, 1200);
     }
 
     distance() {
         return this.world.character.x - this.x
     }
 
-    // animate() {
-    //     if (this.isDead()) {
-
-    //     } else {
-    //         setInterval(() => {
-    //             this.handleMovement();
-    //         }, 1000/60)
-
-    //         setInterval(() => {
-    //             this.handleAnimation();
-    //         }, 200)  
-    //     }
-    // }
-
-    // handleMovement() {
-    //     if(!this.isDead()) this.moveLeft(false);
-    // }
-
-    // handleAnimation() {
-    //     this.isDead() ? this.loadImage('../assets/3_enemies_chicken/chicken_normal/2_dead/dead.png') : this.playAnimation(this.IMAGES_WALKING);
-    //     if(this.isDead()) this.removeBody();
-    // }
+    walk() {
+        console.log('moin')
+        this.walkInterval = setInterval(() => {
+            if (this.isDead()) return;
+            if (this.distance() >= 100) {
+                this.moveRight();
+                this.otherDirection = true;
+                console.log('recht')
+            } else if (this.distance() <= -100) {
+                this.moveLeft(false);
+                console.log('links')
+            } 
+        }, 800);
+    }
 }
