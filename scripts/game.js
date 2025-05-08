@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
+    canvas.classList.add('d-block');
     world = new World(canvas, keyboard);
 }
 

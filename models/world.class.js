@@ -198,7 +198,7 @@ class World {
 
     loseGame() {
         setTimeout(() => {
-            console.log('You loose')
+            this.ctx
         }, 2500);
     }
 }
