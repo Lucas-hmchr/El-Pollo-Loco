@@ -192,13 +192,11 @@ class World {
 
     winGame() {
         setTimeout(() => {
-            console.log('You win')
         }, 2500);
     }
 
     loseGame() {
         setTimeout(() => {
-            this.ctx
         }, 2500);
     }
 }

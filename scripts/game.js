@@ -2,7 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
+function initGame() {
     canvas = document.getElementById('canvas');
     canvas.classList.add('d-block');
     world = new World(canvas, keyboard);

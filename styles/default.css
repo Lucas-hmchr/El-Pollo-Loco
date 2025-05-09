@@ -1,6 +1,11 @@
+:root{
+    --button-clr: #eead22;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
