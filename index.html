@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,21 +24,26 @@
     <script src="./levels/level1.js"></script>
     <script src="./scripts/game.js"></script>
 </head>
+
 <body onload="init()">
+    <div id="screen" class="screen">
+        <canvas id="canvas" width="720" height="480">
 
-    <canvas id="canvas" width="720" height="480">
+        </canvas>
 
-    </canvas>
+        <div id="startScreen" class="start-screen">
 
-    <div id="startScreen" class="start-screen">
+        </div>
 
-
+        <div id="endScreen" class="end-screen d-none">
+            <button class="play-again-btn">PLAY AGAIN</button>
+        </div>
     </div>
-
 
     <script src="./scripts/template.js"></script>
     <script src="./scripts/utils.js"></script>
     <script src="./script.js"></script>
-    
+
 </body>
+
 </html>

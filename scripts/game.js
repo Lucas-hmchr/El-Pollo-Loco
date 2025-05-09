@@ -25,3 +25,13 @@ window.addEventListener('keyup', (e) => {
     if(e.keyCode === 32) keyboard.SPACE = false;
     if(e.keyCode === 68) keyboard.D = false;
 });
+
+function changeGameSound() {
+    gameIsMute ? loudGame() : muteGame();
+};
+
+function displayWinScreen(win){
+    endScreen.classList.remove('d-none');
+    endScreen.style.backgroundImage = win ? 'url("./assets/9_intro_outro_screens/game_over/game over.png")' : 'url("./assets/9_intro_outro_screens/game_over/oh no you lost!.png")';
+    endScreen.innerHTML += win ? victoryTemplate() : loseTemplate();
+}

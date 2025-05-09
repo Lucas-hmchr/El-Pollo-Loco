@@ -43,3 +43,18 @@ function policyTemplate() {
         </div>
     `
 };
+
+function victoryTemplate() {
+    return `
+    gewonnen
+
+    `
+};
+
+function loseTemplate() {
+    return `
+
+    `
+};
+
+

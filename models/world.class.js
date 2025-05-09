@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     throwableObjects = [];
     endboss;
+    gameRunning = true;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -186,17 +187,14 @@ class World {
     }
 
     checkGameEnd() {
-        if(this.character.isDead()) this.loseGame();
-        if(this.endboss.isDead()) this.winGame();
+        if(this.character.isDead() && this.gameRunning) this.gameOver(false);
+        if(this.endboss.isDead() && this.gameRunning) this.gameOver(true);
     }
 
-    winGame() {
+    gameOver(win) {
+        this.gameRunning = false;
         setTimeout(() => {
-        }, 2500);
-    }
-
-    loseGame() {
-        setTimeout(() => {
+            displayWinScreen(win);
         }, 2500);
     }
 }

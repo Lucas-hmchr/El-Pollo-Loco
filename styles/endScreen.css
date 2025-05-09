@@ -1,0 +1,36 @@
+.end-screen {
+    width: 720px;
+    height: 480px;
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.144);
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    & .play-again-btn{
+        padding: 16px;
+        background-color: var(--button-clr);
+        border: white 3px solid;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        -webkit-box-shadow: 5px 5px 28px -4px rgba(0,0,0,0.62); 
+        box-shadow: 5px 5px 28px -4px rgba(0,0,0,0.62);
+        transition: 0.1s ease-in-out;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: center;
+        color: rgb(255, 255, 255);
+
+        &:hover{
+            scale: 1.05;
+        }
+    }
+}

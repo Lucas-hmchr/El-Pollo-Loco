@@ -33,3 +33,12 @@ button{
 .d-none{
     display: none!important;
 }
+
+.screen{
+    width: 720px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}

@@ -1,4 +1,7 @@
+const body = document.querySelector('body')
+const screen = document.getElementById('screen')
 const startScreen = document.getElementById('startScreen');
+const endScreen = document.getElementById('endScreen');
 // const muteBtn = document.getElementById('muteBtn');
 // const muteBtnIcon = document.getElementById('muteBtnIcon');
 // const instructionsBtn = document.getElementById('instructionsBtn');
@@ -11,12 +14,8 @@ function init() {
 };
 
 function startGame() {
-    startScreen.classList.add('d-none');
+    startScreen.remove();
     initGame();
-};
-
-function changeGameSound() {
-    gameIsMute ? loudGame() : muteGame();
 };
 
 function openInstructions() {
@@ -26,3 +25,4 @@ function openInstructions() {
 function openPolicy() {
     startScreen.innerHTML = policyTemplate();
 };
+
