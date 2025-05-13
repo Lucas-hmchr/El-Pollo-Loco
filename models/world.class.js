@@ -8,11 +8,15 @@ class World {
     throwableObjects = [];
     endboss;
     gameRunning = true;
+    animationFrameId;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.animationFrameId = null;
+        initLevel();
+
         this.setWorld();
         this.draw();
         this.run();
@@ -43,7 +47,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0)
 
         let self = this;
-        requestAnimationFrame(function () {
+        this.animationFrameId = requestAnimationFrame(function () {
             self.draw();
         });
     }
@@ -197,4 +201,12 @@ class World {
             displayWinScreen(win);
         }, 2500);
     }
+
+    stop() {
+    if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+        this.animationFrameId = null;
+    }
+}
+
 }
