@@ -1,14 +1,14 @@
-:root{
+:root {
     --button-clr: #eead22;
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
+body {
     margin: 0;
     height: 100vh;
     display: flex;
@@ -20,28 +20,50 @@ body{
     background-size: cover;
 }
 
-canvas{
+canvas {
     background-color: black;
     display: none;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-.d-block{
-    display: block!important;
+.d-block {
+    display: block !important;
 }
 
-.d-none{
-    display: none!important;
+.d-none {
+    display: none !important;
 }
 
-.screen{
+.screen {
     width: 720px;
     height: 480px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    .screen {
+        width: 100vw;
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .screen {
+        width: auto;
+        height: 100vh;
+    }
 }
