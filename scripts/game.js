@@ -33,5 +33,12 @@ function changeGameSound() {
 function displayWinScreen(win){
     endScreen.classList.remove('d-none');
     endScreen.style.backgroundImage = win ? 'url("./assets/9_intro_outro_screens/game_over/game over.png")' : 'url("./assets/9_intro_outro_screens/game_over/oh no you lost!.png")';
-    endScreen.innerHTML += win ? victoryTemplate() : loseTemplate();
+    endScreen.innerHTML = win ? victoryTemplate() : loseTemplate();
+}
+
+function restartGame() {
+    endScreen.classList.add('d-none');
+    if (world) world.stop();
+    // if (world) canvas.remove();
+    initGame();
 }

@@ -5,13 +5,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.144);
     color: white;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    z-index: 100;
 
     & .play-again-btn{
         padding: 16px;

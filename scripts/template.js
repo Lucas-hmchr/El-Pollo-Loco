@@ -46,14 +46,14 @@ function policyTemplate() {
 
 function victoryTemplate() {
     return `
-    gewonnen
+        <button class="play-again-btn" onclick="restartGame()">PLAY AGAIN</button>
 
     `
 };
 
 function loseTemplate() {
     return `
-
+        <button class="play-again-btn" onclick="restartGame()">PLAY AGAIN</button>
     `
 };
 
