@@ -40,6 +40,7 @@ button {
 .screen {
     width: 720px;
     height: 480px;
+    aspect-ratio: 720/480;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +55,6 @@ button {
     .screen {
         width: 100vw;
         height: auto;
-        aspect-ratio: 720/480;
     }
 }
 
