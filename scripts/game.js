@@ -45,15 +45,11 @@ function restartGame() {
 }
 
 function hideControlButtons() {
-    if (window.innerWidth < 720) {
-        controlBtns.classList.add('d-none')
-    }
+        controlBtns.classList.add('d-none');
 }
 
 function showControlButtons() {
-    if (window.innerWidth < 720) {
-        controlBtns.classList.remove('d-none')
-    }
+        controlBtns.classList.remove('d-none');
 }
 
 function goBackToMainMenu() {
