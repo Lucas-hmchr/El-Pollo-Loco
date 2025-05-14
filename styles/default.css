@@ -54,6 +54,7 @@ button {
     .screen {
         width: 100vw;
         height: auto;
+        aspect-ratio: 720/480;
     }
 }
 

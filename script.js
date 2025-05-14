@@ -6,11 +6,11 @@ const endScreen = document.getElementById('endScreen');
 // const muteBtnIcon = document.getElementById('muteBtnIcon');
 // const instructionsBtn = document.getElementById('instructionsBtn');
 
-
 let gameIsMute = false;
 
 function init() {
     startScreen.innerHTML = startScreenMenuTemplate();
+    setScreenHeight()
 };
 
 function startGame() {
@@ -25,4 +25,3 @@ function openInstructions() {
 function openPolicy() {
     startScreen.innerHTML = policyTemplate();
 };
-
