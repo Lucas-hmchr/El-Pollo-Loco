@@ -14,8 +14,8 @@ function instructionsTemplate() {
     return `
         <div class="instructions-container" id="instructionsContainer">
             <button class="close-btn" onclick="init()"><img src="./assets/icons/close.svg" alt=""></button>
-            <p style="font-size: 16px;">
-                You are playing as the crazy mexican <b>Pepe Peligroso</b>. On your way to fight the giant endboss you have to collect bottles, coins and kill or dodge all the chickens trying to finish you. Good look!
+            <p style="font-size: 16px; font-family:Segoe UI;">
+                You are playing as the crazy mexican <b style="font-family: Segoe UI;">Pepe Peligroso</b>. On your way to fight the giant endboss you have to collect bottles, coins and kill or dodge all the chickens trying to finish you. Good look!
             </p>
             <p class="instructions">
                 <span class="instruction"><img src="./assets/icons/arrow-left.svg" alt="" class="instructions-icon"> = move left</span>
@@ -32,6 +32,7 @@ function policyTemplate() {
     return `
         <div class="instructions-container" id="instructionsContainer" style="font-size: 16px;">
             <button class="close-btn" onclick="init()"><img src="./assets/icons/close.svg" alt=""></button>
+            <div class="policy-text">
                 <h2>Impressum</h2>
                 <span>Lucas Hamacher</span>
                 <span>Kreuzgasse 4</span>
@@ -40,6 +41,7 @@ function policyTemplate() {
 
                 <h2>Datenschutz</h2>
                 <span>Beim verwnden der Seite werden keine Daten gespeichert.</span>
+            </div>
         </div>
     `
 };
