@@ -6,6 +6,7 @@ function initGame() {
     canvas = document.getElementById('canvas');
     canvas.classList.add('d-block');
     world = new World(canvas, keyboard);
+    toggleControlButtons();
 }
 
 window.addEventListener('keydown', (e) => {
@@ -31,6 +32,7 @@ function changeGameSound() {
 };
 
 function displayWinScreen(win){
+    toggleControlButtons()
     endScreen.classList.remove('d-none');
     endScreen.style.backgroundImage = win ? 'url("./assets/9_intro_outro_screens/game_over/game over.png")' : 'url("./assets/9_intro_outro_screens/game_over/oh no you lost!.png")';
     endScreen.innerHTML = win ? victoryTemplate() : loseTemplate();
@@ -39,6 +41,11 @@ function displayWinScreen(win){
 function restartGame() {
     endScreen.classList.add('d-none');
     if (world) world.stop();
-    // if (world) canvas.remove();
     initGame();
+}
+
+function toggleControlButtons() {
+    if (window.innerWidth < 720) {
+        controlBtns.classList.toggle('d-none')
+    }
 }

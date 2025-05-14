@@ -1,0 +1,46 @@
+.control-buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 101;
+    padding-inline: 16px;
+
+
+    & div {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+
+        & button {
+            width: 72px;
+            aspect-ratio: 1/1;
+            background-color: azure;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--button-clr);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-box-shadow: 5px 5px 28px -4px rgba(0, 0, 0, 0.62);
+            box-shadow: 5px 5px 28px -4px rgba(0, 0, 0, 0.62);
+
+            & img {
+                width: 70%;
+            }
+        }
+
+        & .throw-button {
+            margin-bottom: 50%;
+
+            & img {
+                width: 100%;
+            }
+        }
+    }
+
+
+}
