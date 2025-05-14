@@ -14,24 +14,54 @@
     background-position: center;
     z-index: 100;
 
-    & .play-again-btn{
-        padding: 16px;
-        background-color: var(--button-clr);
-        border: white 3px solid;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        -webkit-box-shadow: 5px 5px 28px -4px rgba(0,0,0,0.62); 
-        box-shadow: 5px 5px 28px -4px rgba(0,0,0,0.62);
-        transition: 0.1s ease-in-out;
+    & .end-screen-buttons {
         display: flex;
-        justify-content: space-between;
-        gap: 8px;
         align-items: center;
-        color: rgb(255, 255, 255);
+        gap: 12px;
 
-        &:hover{
-            scale: 1.05;
+
+        & .play-again-btn {
+            height: 62px;
+            padding: 16px;
+            background-color: var(--button-clr);
+            border: white 3px solid;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            -webkit-box-shadow: 5px 5px 28px -4px rgba(0, 0, 0, 0.62);
+            box-shadow: 5px 5px 28px -4px rgba(0, 0, 0, 0.62);
+            transition: 0.1s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            align-items: center;
+            color: rgb(255, 255, 255);
+
+            &:hover {
+                scale: 1.05;
+            }
         }
+
+        & .main-menu-btn {
+            height: 62px;
+            aspect-ratio: 1/1;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: var(--button-clr);
+            border: white 3px solid;
+                        transition: 0.1s ease-in-out;
+            
+            &:hover {
+                scale: 1.05;
+            }
+
+            & img {
+                width: 100%
+            }
+        }
+
+
     }
+
+
 }

@@ -9,13 +9,14 @@ let controlBtns = document.getElementById('controlButtons');
 // const instructionsBtn = document.getElementById('instructionsBtn');
 
 let gameIsMute = false;
+let firstRoundOver = false;
 
 function init() {
     startScreen.innerHTML = startScreenMenuTemplate();
 };
 
 function startGame() {
-    startScreen.remove();
+    startScreen.classList.add('d-none');
     initGame();
 };
 

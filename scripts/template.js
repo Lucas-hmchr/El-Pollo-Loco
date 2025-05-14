@@ -6,7 +6,7 @@ function startScreenMenuTemplate() {
             <button id="policyBtn" class="menu-button" onclick="openPolicy()"><img src="./assets/icons/policy.svg" alt=""></button>
         </div>
 
-        <button id="startButton" class="start-button" onclick="startGame()">Start Game <img src="./assets/icons/sombrero.svg" alt=""></button>
+        <button id="startButton" class="start-button" onclick="firstRoundOver ? restartGame() : startGame()">Start Game <img src="./assets/icons/sombrero.svg" alt=""></button>
     `
 };
 
@@ -46,14 +46,20 @@ function policyTemplate() {
 
 function victoryTemplate() {
     return `
+    <div class="end-screen-buttons">
+        <button class="main-menu-btn" onclick="goBackToMainMenu()"><img src="./assets/icons/home.svg"></button>
         <button class="play-again-btn" onclick="restartGame()">PLAY AGAIN</button>
+    </div>
 
     `
 };
 
 function loseTemplate() {
     return `
+    <div class="end-screen-buttons">
+        <button class="main-menu-btn" onclick="goBackToMainMenu()"><img src="./assets/icons/home.svg"></button>
         <button class="play-again-btn" onclick="restartGame()">PLAY AGAIN</button>
+    </div>
     `
 };
 

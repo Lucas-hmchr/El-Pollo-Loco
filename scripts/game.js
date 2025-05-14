@@ -3,10 +3,10 @@ let world;
 let keyboard = new Keyboard();
 
 function initGame() {
-    canvas = document.getElementById('canvas');
-    canvas.classList.add('d-block');
+    if (!canvas) canvas = document.getElementById('canvas');
+    canvas.classList.remove('d-none');
     world = new World(canvas, keyboard);
-    toggleControlButtons();
+    showControlButtons();
 }
 
 window.addEventListener('keydown', (e) => {
@@ -32,7 +32,7 @@ function changeGameSound() {
 };
 
 function displayWinScreen(win){
-    toggleControlButtons()
+    hideControlButtons()
     endScreen.classList.remove('d-none');
     endScreen.style.backgroundImage = win ? 'url("./assets/9_intro_outro_screens/game_over/game over.png")' : 'url("./assets/9_intro_outro_screens/game_over/oh no you lost!.png")';
     endScreen.innerHTML = win ? victoryTemplate() : loseTemplate();
@@ -41,11 +41,25 @@ function displayWinScreen(win){
 function restartGame() {
     endScreen.classList.add('d-none');
     if (world) world.stop();
-    initGame();
+    startGame();
 }
 
-function toggleControlButtons() {
+function hideControlButtons() {
     if (window.innerWidth < 720) {
-        controlBtns.classList.toggle('d-none')
+        controlBtns.classList.add('d-none')
     }
+}
+
+function showControlButtons() {
+    if (window.innerWidth < 720) {
+        controlBtns.classList.remove('d-none')
+    }
+}
+
+function goBackToMainMenu() {
+    firstRoundOver = true;
+    startScreen.classList.remove('d-none');
+    canvas.classList.add('d-none');
+    endScreen.classList.add('d-none');
+    init();
 }
