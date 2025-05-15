@@ -11,19 +11,33 @@ let controlBtns = document.getElementById('controlButtons');
 let gameIsMute = false;
 let firstRoundOver = false;
 
+/**
+ * Initializes the page.
+ * - StartScreen template gets added into the startScreen Container.
+ */
 function init() {
     startScreen.innerHTML = startScreenMenuTemplate();
 };
 
+/**
+ * Starts the actual game.
+ * - StartScreen gets undisplayed and the init function for the game gets called.
+ */
 function startGame() {
     startScreen.classList.add('d-none');
     initGame();
 };
 
+/**
+ * Displays the instructions inside the startScreen container.
+ */
 function openInstructions() {
     startScreen.innerHTML = instructionsTemplate();
 };
 
+/**
+ * Displays the policys inside the startScreen container.
+ */
 function openPolicy() {
     startScreen.innerHTML = policyTemplate();
 };
