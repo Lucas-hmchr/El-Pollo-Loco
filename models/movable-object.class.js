@@ -28,9 +28,6 @@ class MovableObject extends DrawableObject {
     gravityIntervalId;
     movementStop;
 
-    // animationTime = 100;
-
-
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;

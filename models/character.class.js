@@ -16,6 +16,11 @@ class Character extends MovableObject {
     availableBottles = 0;
     collectedCoins = 0;
 
+    hurtSound = new Audio('../assets/sounds/character/character-hurt.mp3');
+    jumpSound = new Audio('../assets/sounds/character/jump.mp3');
+    snoringSound = new Audio('../assets/sounds/character/snoring.mp3');
+
+
     IMAGES_STANDING = [
         '../assets/2_character_pepe/1_idle/idle/I-1.png',
         '../assets/2_character_pepe/1_idle/idle/I-2.png',
@@ -153,8 +158,14 @@ class Character extends MovableObject {
 
     handleSleepingAnimation() {
         const now = new Date().getTime();
-        if ((now - this.movementStop) >= 3000) this.playAnimation(this.IMAGES_SLEEPING);
+        let isSleeping = (this.movementStop && (now - this.movementStop) >= 3000);
+        this.startSnoring(isSleeping);
+
+        if (isSleeping) {
+            this.playAnimation(this.IMAGES_SLEEPING);
+        }
     }
+
 
     handleJumpAnimation() {
         if (this.isAboveGround()) {
@@ -164,22 +175,33 @@ class Character extends MovableObject {
 
     handleHurtAnimation() {
         if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURTING);            
+            this.playAnimation(this.IMAGES_HURTING);
         }
     }
 
     handleDeathAnimation() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
-        }      
+        }
     }
 
     hurtCharacter() {
         this.applyDamage(5);
+        if (!this.isDead() && !this.world.isMute) this.hurtSound.play()
     }
-    
+
     inPositionToJumpKill(enemy) {
         return this.isColliding(enemy) && this.isAboveGround() && this.speedY < 0 && !(enemy instanceof Endboss);
     }
+
+    startSnoring(isSleeping) {
+        if (isSleeping && this.snoringSound.paused) {
+            this.snoringSound.play();
+        } else if (!isSleeping && !this.snoringSound.paused) {
+            this.snoringSound.pause();
+            this.snoringSound.currentTime = 0;
+        }
+    }
+
 
 }

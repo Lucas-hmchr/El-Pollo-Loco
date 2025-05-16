@@ -9,6 +9,8 @@ class World {
     endboss;
     gameRunning = true;
     animationFrameId;
+    isMute = false;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
