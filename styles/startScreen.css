@@ -126,5 +126,14 @@
             font-family: 'Segoe UI';
         }
     }
+}
 
+@media (max-width: 720px) {
+    .start-screen {
+        padding: 24px;
+
+        & .menu-buttons {
+            gap: 12px;
+        }
+    }
 }
