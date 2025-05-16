@@ -41,3 +41,4 @@ function openInstructions() {
 function openPolicy() {
     startScreen.innerHTML = policyTemplate();
 };
+
