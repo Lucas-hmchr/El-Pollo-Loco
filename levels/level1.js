@@ -73,11 +73,11 @@ function initLevel() {
             new StatusBar('endboss'),
         ],
         [
-            new Coin('../assets/8_coin/coin_1.png', 600, 900),
-            new Coin('../assets/8_coin/coin_2.png', 800, 1200),
-            new Coin('../assets/8_coin/coin_2.png', 1200, 1500),
-            new Coin('../assets/8_coin/coin_1.png', 1600, 1900),
-            new Coin('../assets/8_coin/coin_2.png', 1700, 1900),
+            new Coin(600, 900),
+            new Coin(800, 1200),
+            new Coin(1200, 1500),
+            new Coin(1600, 1900),
+            new Coin(1700, 1900),
         ]
     );
 }
